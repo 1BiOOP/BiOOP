@@ -1,0 +1,135 @@
+Class Canva Extends Object{
+    title: Ref<String>, shapes: List<Shape>;
+    setTitle(title){
+        this.title:=title
+    };
+}
+Class Shape Extends Object {
+    bw: String, bh: String, 
+    top: String, left: String, 
+    color: Ref<String>;
+    setColor(color){
+        this.color:=color
+    };
+}
+
+Class Circle Extends Shape {
+    x: String, y: String, r1: String;
+}
+
+Class Square Extends Circle {}
+
+Class Rect Extends Square {
+    r2: String;
+}
+
+Class Polygon Extends Shape {
+    points: String;
+}
+
+sun=new Circle( [ "100", "100", "50", "0"
+                , ref "", "20", "20", "40"]);;
+
+houseColor = ref "";;
+roof = new Polygon( [ "400", "100", "200", "200"
+                    , houseColor, "0,100 100,0 200,100"]);;
+house = new Rect(   [ "400", "150", "300", "225"
+                    , houseColor, "0", "0", "150", "100"]);;
+
+tree = new Circle(  [ "100", "100", "250", "50"
+                    , ref "", "60", "60", "40"]);;
+trunk = new Polygon([ "100", "50", "325", "50"
+                    , ref "", "70,50 60,0 50,50"]);;
+
+canva = new Canva([ ref "", 
+                    [ sun 
+                    , roof 
+                    , house 
+                    , tree
+                    , trunk]]);;
+
+main =  (sun->setColor) "red";
+        (roof->setColor) "brown";
+        (tree->setColor) "green";
+        (trunk->setColor) "brown";
+        (canva->setTitle) "Picture";
+        canva;;
+
+
+        ( "Canva"
+        , "new Canva([title, shapes])"
+        , """Html.div [] [] [   Html.div [] [] [title],
+                                Html.div [] [] shapes
+                            ]"""),
+
+        ( "Circle"
+        , "new Circle([bw, bh, top, left, color, x, y, r1])"
+        , """Html.svg   [ ["position", "absolute"]
+                        , ["top", top]
+                        , ["left", left]
+                        ] 
+                        [ ["width", bw]
+                        , ["height", bh]
+                        ] 
+                        [ Html.circle   [] 
+                                        [ ["cx", x]
+                                        , ["cy", y]
+                                        , ["r", r1]
+                                        , ["fill", color]
+                                        ] 
+                                        []
+                        ]"""),
+
+        ( "Square"
+        , "new Square([bw, bh, top, left, color, x, y, r1])"
+        , """Html.svg   [ ["position", "absolute"]
+                        , ["top", top]
+                        , ["left", left]
+                        ] 
+                        [ ["width", bw]
+                        , ["height", bh]
+                        ] 
+                        [ Html.rect [] 
+                                    [ ["x", x]
+                                    , ["y", y]
+                                    , ["width", r1]
+                                    , ["height", r1]
+                                    , ["fill", color]
+                                    ] 
+                                    []
+                        ]"""),
+
+        ( "Rect"
+        , "new Rect([bw, bh, top, left, color, x, y, r1, r2])"
+        , """Html.svg   [ ["position", "absolute"]
+                        , ["top", top]
+                        , ["left", left]
+                        ] 
+                        [ ["width", bw]
+                        , ["height", bh]
+                        ] 
+                        [ Html.rect [] 
+                                    [ ["x", x]
+                                    , ["y", y]
+                                    , ["width", r1]
+                                    , ["height", r2]
+                                    , ["fill", color]
+                                    ] 
+                                    []
+                        ]"""),
+
+        ( "Polygon"
+        , "new Polygon([bw, bh, top, left, color, points])"
+        , """Html.svg   [ ["position", "absolute"]
+                        , ["top", top]
+                        , ["left", left]
+                        ] 
+                        [ ["width", bw]
+                        , ["height", bh]
+                        ] 
+                        [ Html.polygon  [] 
+                                        [ ["points", points]
+                                        , ["fill", color]
+                                        ] 
+                                        []
+                        ]""")

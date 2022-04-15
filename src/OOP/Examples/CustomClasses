@@ -1,0 +1,11 @@
+Class PlaceHolderTextField Extends TextField {
+    placeholder:String;
+}
+End
+
+new PlaceHolderTextField(["tel", "Telephone: ", "50px", "123-456-789"])
+
+-- Template
+-- PlaceHolderTextField
+-- new PlaceHolderTextField([name, hint, left, placeholder])
+-- Html.p [["margin-left", left], ["text-align", "left"]] [] [hint, Html.input [] [["type", "text"], ["name", name], ["placeholder", placeholder]] []]

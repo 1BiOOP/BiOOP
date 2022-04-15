@@ -1,0 +1,28 @@
+margin = "100px";;
+name = 
+        new TextField(["name", "Name: ", margin]) ;;
+age = 
+        new PasswordField(["age", "Age: ", margin]) ;;
+school = 
+        new TextField(["school", "Graduated School: ", margin]);;
+radioOptions = 
+        ["girl", "boy"] ;;
+gender = 
+        map_ "" (\option => new RadioButton(["gender", option, option])) radioOptions ;;
+checkOptions = 
+        ["IELTS", "TOEFL"] ;;
+exam = 
+        map_ "" (\option => new CheckBox([option, "I passed " ++ option, option])) checkOptions;;
+submit = 
+        new SubmitButton(["submit", "", "Submit"]) ;;
+formItems = 
+        [ name, age, school] ++ gender ++ exam ++ [submit];;
+formProcess =
+        "var textPane = document.getElementById('textpane');textPane.value = 'Hi, I\'m ' + data.get('name') +'. I\'m ' + data.get('age') +' years old. I graduated from ' + data.get('school') +'. I\'m a ' + data.get('gender') + '. ' + (function(d){if (d.get('IELTS') && d.get('TOEFL')) {return 'I passed IELTS and TOEFL.';} else if (d.get('TOEFL')) {return 'I passed TOEFL.';} else if (d.get('IELTS')) {return 'I passed IELTS.';} else {return 'I didn\'t pass any exams.';}})(data);";;
+form = 
+        new Form(["form", formItems, formProcess]);;
+textPane = 
+        new TextPane(["textpane"]);;
+web = 
+        new WebPage([[form, textPane]]);;
+main = web;;

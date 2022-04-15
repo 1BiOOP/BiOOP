@@ -1,0 +1,23 @@
+class MenuItem extends AbstractButton {
+    private String title;
+    ...
+}
+class Menu extends MenuItem {
+    private List<MenuItem> items;
+    ...
+} 
+class MenuBar extends Component {
+    private List<Menu> menus;
+    ...
+}
+public class MenuDemo {
+    public static void main(String[] args){
+        menuBar = new MenuBar(...);
+        ...
+        menuBar.add(file);
+        ...
+        menuBar.add(help);
+        ...
+    }
+}
+

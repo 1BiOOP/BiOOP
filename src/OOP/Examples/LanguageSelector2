@@ -1,0 +1,22 @@
+Class MenuItem Extends Object {
+    title: Ref<String>;
+    setTitle(title){this.title:= ">>>" ++ title};
+}
+Class Menu Extends MenuItem {
+    items:Ref<List<MenuItem>>, id1:String, id2:String;
+    add(item){this.items:=(!this.items) ++ [item]};
+    setTitle(title){this.title:= "==>" ++ title};
+}
+languageSelector = new Menu([ref "", ref [], "selector", "options"]);;
+functionLang = new MenuItem([ref "Functional"]);;
+objectOrientedLang = new Menu([ref "", ref [], "object-oriented", "subOptions"]);;
+java = new MenuItem([ref "Java"]);;
+cpp = new MenuItem([ref "C++"]);;
+main =
+    (languageSelector->setTitle) "Programming Languages";
+    (objectOrientedLang->setTitle) "Object-Oriented";
+    (objectOrientedLang->add) java;
+    (objectOrientedLang->add) cpp;
+    (languageSelector->add) functionLang;
+    (languageSelector->add) objectOrientedLang;
+    languageSelector;;
